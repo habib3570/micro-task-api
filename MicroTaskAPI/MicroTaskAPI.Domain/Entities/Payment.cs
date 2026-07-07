@@ -10,9 +10,11 @@ namespace MicroTaskAPI.Domain.Entities
 
         public int CoinPurchased { get; set; }
         public decimal Amount { get; set; }
-        public string PaymentMethod { get; set; } = "Stripe";
-        public string? TransactionId { get; set; }
+        public string PaymentMethod { get; set; } = string.Empty; 
+        public string SenderNumber { get; set; } = string.Empty;
+        public string TransactionId { get; set; } = string.Empty;
         public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
         public PaymentStatus Status { get; set; } = PaymentStatus.Pending;
+        public string? RejectionReason { get; set; }
     }
 }
