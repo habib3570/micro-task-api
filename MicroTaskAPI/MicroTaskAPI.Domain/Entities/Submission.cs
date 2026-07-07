@@ -13,9 +13,11 @@ namespace MicroTaskAPI.Domain.Entities
 
         public int WorkerId { get; set; }
         public User Worker { get; set; } = null!;
+        public string WorkerName { get; set; } = string.Empty;
 
         public int BuyerId { get; set; }
         public User Buyer { get; set; } = null!;
+        public string BuyerName { get; set; } = string.Empty;
 
         public string SubmissionDetail { get; set; } = string.Empty;
         public DateTime CurrentDate { get; set; } = DateTime.UtcNow;

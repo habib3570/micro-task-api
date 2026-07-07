@@ -24,4 +24,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicroTaskAPI.Application\MicroTaskAPI.Application.csproj" />
+    <ProjectReference Include="..\MicroTaskAPI.Domain\MicroTaskAPI.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

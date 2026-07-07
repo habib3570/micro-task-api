@@ -6,6 +6,7 @@ namespace MicroTaskAPI.Application.Interfaces.Repositories
     {
         Task<Payment?> GetByIdAsync(int id);
         Task<List<Payment>> GetByBuyerEmailAsync(string buyerEmail);
+        Task<List<Payment>> GetPendingAsync();
         Task<Payment> AddAsync(Payment payment);
         Task UpdateAsync(Payment payment);
         Task<decimal> GetTotalPaymentsAsync();
