@@ -15,4 +15,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicroTaskAPI.Application\MicroTaskAPI.Application.csproj" />
+    <ProjectReference Include="..\MicroTaskAPI.Infrastructure\MicroTaskAPI.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

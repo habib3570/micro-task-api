@@ -18,6 +18,7 @@ namespace MicroTaskAPI.Infrastructure.Persistence.Configurations
             builder.Property(w => w.PaymentSystem).IsRequired().HasMaxLength(50);
             builder.Property(w => w.AccountNumber).IsRequired().HasMaxLength(30);
             builder.Property(w => w.WithdrawDate).IsRequired();
+            builder.Property(w => w.RejectionReason).HasMaxLength(500);
 
             builder.Property(w => w.Status)
                 .IsRequired()

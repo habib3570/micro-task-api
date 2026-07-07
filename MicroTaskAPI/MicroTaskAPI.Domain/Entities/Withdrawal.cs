@@ -11,10 +11,10 @@ namespace MicroTaskAPI.Domain.Entities
         public string WorkerName { get; set; } = string.Empty;
         public int WithdrawalCoin { get; set; }
         public decimal WithdrawalAmount { get; set; }
-        public string PaymentSystem { get; set; } = string.Empty; 
+        public string PaymentSystem { get; set; } = string.Empty;
         public string AccountNumber { get; set; } = string.Empty;
         public DateTime WithdrawDate { get; set; } = DateTime.UtcNow;
         public WithdrawalStatus Status { get; set; } = WithdrawalStatus.Pending;
-        public enum PaymentSystemType { Stripe, Bkash, Rocket, Nagad }
+        public string? RejectionReason { get; set; }
     }
 }

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MicroTaskAPI.Application.Interfaces.Repositories;
+using MicroTaskAPI.Application.Interfaces.Services;
+using MicroTaskAPI.Infrastructure.ExternalServices;
 using MicroTaskAPI.Infrastructure.Persistence.Context;
 using MicroTaskAPI.Infrastructure.Persistence.Repositories;
 
@@ -22,6 +24,8 @@ namespace MicroTaskAPI.Infrastructure.DependencyInjection
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IWithdrawalRepository, WithdrawalRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
+
+            services.AddScoped<IJwtService, JwtService>();
 
             return services;
         }

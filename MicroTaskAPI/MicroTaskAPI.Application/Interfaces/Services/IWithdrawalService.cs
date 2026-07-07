@@ -7,6 +7,7 @@ namespace MicroTaskAPI.Application.Interfaces.Services
         Task<WithdrawalResponseDto> CreateAsync(string workerEmail, WithdrawalCreateDto dto);
         Task<List<WithdrawalResponseDto>> GetPendingAsync();
         Task ApproveAsync(int id);
+        Task RejectAsync(int id, WithdrawalRejectDto dto);
         Task<List<WithdrawalResponseDto>> GetByWorkerEmailAsync(string workerEmail);
     }
 }

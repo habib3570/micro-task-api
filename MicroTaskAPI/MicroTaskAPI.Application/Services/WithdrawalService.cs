@@ -80,6 +80,32 @@ namespace MicroTaskAPI.Application.Services
                 "/dashboard/worker-home");
         }
 
+        public async Task RejectAsync(int id, WithdrawalRejectDto dto)
+        {
+            var withdrawal = await _withdrawalRepository.GetByIdAsync(id)
+                ?? throw new EntityNotFoundException("Withdrawal", id);
+
+            if (withdrawal.Status != WithdrawalStatus.Pending)
+                throw new InvalidSubmissionStatusException("Only pending withdrawals can be rejected.");
+
+            withdrawal.Status = WithdrawalStatus.Rejected;
+            withdrawal.RejectionReason = dto.RejectionReason;
+            await _withdrawalRepository.UpdateAsync(withdrawal);
+
+            // Refund the held coins back to the worker
+            var worker = await _userRepository.GetByIdAsync(withdrawal.WorkerId);
+            if (worker != null)
+            {
+                worker.Coin += withdrawal.WithdrawalCoin;
+                await _userRepository.UpdateAsync(worker);
+            }
+
+            await _notificationService.CreateAsync(
+                withdrawal.WorkerId,
+                $"Your withdrawal request of {withdrawal.WithdrawalCoin} coins was rejected. Reason: {dto.RejectionReason}. Coins refunded.",
+                "/dashboard/worker-home");
+        }
+
         public async Task<List<WithdrawalResponseDto>> GetByWorkerEmailAsync(string workerEmail)
         {
             var withdrawals = await _withdrawalRepository.GetByWorkerEmailAsync(workerEmail);
@@ -96,7 +122,8 @@ namespace MicroTaskAPI.Application.Services
             PaymentSystem = withdrawal.PaymentSystem,
             AccountNumber = withdrawal.AccountNumber,
             WithdrawDate = withdrawal.WithdrawDate,
-            Status = withdrawal.Status.ToString()
+            Status = withdrawal.Status.ToString(),
+            RejectionReason = withdrawal.RejectionReason
         };
     }
 }

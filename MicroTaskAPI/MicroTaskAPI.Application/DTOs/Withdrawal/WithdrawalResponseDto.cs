@@ -11,5 +11,6 @@
         public string AccountNumber { get; set; } = string.Empty;
         public DateTime WithdrawDate { get; set; }
         public string Status { get; set; } = string.Empty;
+        public string? RejectionReason { get; set; }
     }
 }
